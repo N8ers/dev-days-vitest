@@ -5,7 +5,7 @@
       @emitMessageUp="handleEmitMessageUp"
     />
 
-    <div v-if="childComponentMessage.length">
+    <div data-test="childComponentMessage" v-if="childComponentMessage.length">
       Child Compoent Message: {{ childComponentMessage }}
     </div>
   </div>

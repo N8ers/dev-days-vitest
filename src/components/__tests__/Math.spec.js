@@ -22,7 +22,7 @@ describe("Math", () => {
     Write the assertion for the test below
   */
   it("2 + 2 = 4", () => {
-    // Assertion:
+    // Write you assertion below
   });
 
   /* 

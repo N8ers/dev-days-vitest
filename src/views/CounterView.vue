@@ -5,6 +5,7 @@ import TheCounter from "@/components/TheCounter.vue";
 <template>
   <div>
     <h1>Counter</h1>
+    <hr />
     <div><TheCounter /></div>
   </div>
 </template>
