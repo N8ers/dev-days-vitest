@@ -43,5 +43,3 @@ It takes something and compaires it to an expectation
 [ ] using the terminal instead of vsCode extension
 
 - show the cool options of running tests in the terminal (including the help menu)
-  run all tests - `npx vitest --environment jsdom`
-  run one test - `fix snapshot -`

@@ -6,9 +6,8 @@ import ChildComponent from "@/components/ChildComponent.vue";
 describe("ChildComponent.vue", () => {
   describe("Renders content on load", () => {
     test("Fresh page snapshot", () => {
-      // NATHAN - go through and make sure all the snaps make sense and it's how vitest recomends
-      // const wrapper = mount(ChildComponent)
-      // expect(wrapper).toMatchSnapshot()
+      const wrapper = mount(ChildComponent);
+      expect(wrapper.html()).toMatchSnapshot();
     });
   });
 

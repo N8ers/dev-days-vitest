@@ -25,7 +25,7 @@ describe("Math", () => {
     // Write you assertion below
   });
 
-  /* 
+  /*
   CHALLENGE 2
   Write a test that subtracts 2 numbers
   */

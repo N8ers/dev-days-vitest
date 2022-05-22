@@ -9,10 +9,8 @@ describe("TheWelcome.vue", () => {
   test("Component renders h1 content", () => {
     // Mount TheWelcome Component
     const wrapper = mount(TheWelcome);
-
     // Find the h1 tag in the component
     const h1Tag = wrapper.find("h1");
-
     // Assert the content of the h1 tag
     expect(h1Tag.text()).toBe("Dev Days Vitest!");
   });
@@ -28,9 +26,8 @@ describe("TheWelcome.vue", () => {
   // a file will be made in the "@/components/__tests__/__snapshots__" directory
   test("Component snapshot", () => {
     const wrapper = mount(TheWelcome);
-
     // You can write assertions on the entire wrapper!
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   // More on snapshots

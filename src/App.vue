@@ -17,6 +17,7 @@ import { RouterLink, RouterView } from "vue-router";
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/count">Count</RouterLink>
         <RouterLink to="/props-and-emits">Props & Emits</RouterLink>
+        <RouterLink to="/network-request">Network Request</RouterLink>
       </nav>
     </div>
   </header>
