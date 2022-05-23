@@ -1,8 +1,0 @@
-Testing
-
-* Click actions
-* Interacting with the DOM
-* Testing with props
-* Testing with emits
-* Test Pinia
-* Snapshots
