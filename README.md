@@ -32,6 +32,7 @@ It takes something and compaires it to an expectation
    1. Count tests
    1. ChildComponent tests
    1. ParentComponent tests
+   1. GetData tests
 
 ## Things this doesn't cover
 
