@@ -4,7 +4,7 @@
 
     <div data-test="networkResponseArea">
       <div v-if="apiResult.response" class="success">
-        Response: {{ apiResult.response }}
+        Response: {{ apiResult.response.message }}
       </div>
       <div v-if="apiResult.error" class="error">
         ERROR: {{ apiResult.error }}

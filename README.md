@@ -41,3 +41,8 @@ It takes something and compaires it to an expectation
 - mocking Pinia stores
 - mocking the same network request with different responses
 - routing
+
+## Other things to note
+
+Want to run just one describe block or test file?
+`npx vitest -t "<describe or test name>"`
