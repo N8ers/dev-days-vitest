@@ -13,14 +13,15 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "jest-serializer-vue": "^2.0.2",
     "pinia": "^2.0.13",
     "vue": "^3.2.33",
     "vue-router": "^4.0.14"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
-    "@testing-library/vue": "^6.3.4",
     "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/vue": "^6.3.4",
     "@vitejs/plugin-vue": "^2.3.1",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/test-utils": "^2.0.0-rc.20",

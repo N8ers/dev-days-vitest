@@ -1,0 +1,3 @@
+// Vitest Snapshot v1
+
+exports[`TheCounter.vue > Component renders default content > Fresh page snapshot 1`] = `"Counteradd 10 subtract 1"`;

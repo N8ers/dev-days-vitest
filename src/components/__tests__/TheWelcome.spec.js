@@ -4,19 +4,32 @@ import { describe, expect, test } from "vitest";
 import TheWelcome from "@/components/TheWelcome.vue";
 
 describe("TheWelcome.vue", () => {
+  test("Mount the component", () => {
+    const wrapper = mount(TheWelcome);
+  });
+
   test("Component renders h1 content", () => {
-    // find the h1 tag and check the text value
+    // Mount TheWelcome Component
+    const wrapper = mount(TheWelcome);
+    // Find the h1 tag in the component
+    const h1Tag = wrapper.find("h1");
+    // Assert the content of the h1 tag
+    expect(h1Tag.text()).toBe("Dev Days Vitest!");
   });
 
   test("Component renders p content", () => {
-    // find the p tag and check the text value
+    /* MAKE THIS A TESTING CHALLENGE */
+    const wrapper = mount(TheWelcome);
+    const pTag = wrapper.find("p");
+    expect(pTag.text()).toBe("can you select me??");
   });
 
   // A snapshot is a "picture" of what the rendered html looks like
   // a file will be made in the "@/components/__tests__/__snapshots__" directory
   test("Component snapshot", () => {
+    const wrapper = mount(TheWelcome);
     // You can write assertions on the entire wrapper!
-    // snapshot the value
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   // More on snapshots

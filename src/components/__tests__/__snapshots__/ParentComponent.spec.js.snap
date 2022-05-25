@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`ChildComponent.vue > Renders content on load > Renders default content 1`] = `
+<div class="container" data-v-3e4aa81a="">
+  <h3 data-v-3e4aa81a="">Parent</h3>
+  <!--v-if-->
+  <div class="container" data-v-71c74cf1="" data-v-3e4aa81a="">
+    <h3 data-v-71c74cf1="">Child</h3>
+    <p data-v-71c74cf1="">I am a message from the parent!</p>
+    <hr data-v-71c74cf1=""><input type="text" data-v-71c74cf1=""><button data-v-71c74cf1="">emit message to parent!</button>
+  </div>
+</div>
+`;
