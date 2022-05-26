@@ -3,18 +3,19 @@
     <button @click="makeNetworkRequest">Make a network requst!</button>
 
     <div data-test="networkResponseArea">
-      <div v-if="apiResult.response" class="success">
+      <!-- <div v-if="apiResult.response" class="success">
         Response: {{ apiResult.response.message }}
       </div>
       <div v-if="apiResult.error" class="error">
         ERROR: {{ apiResult.error }}
-      </div>
+      </div> -->
+      <div>Response: {{ apiResultTest }}</div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import axios from "axios";
 
 const apiResult = reactive({
@@ -27,6 +28,8 @@ const clearApiResult = () => {
   apiResult.error = null;
 };
 
+const apiResultTest = ref("");
+
 const makeNetworkRequest = async () => {
   clearApiResult();
 
@@ -38,9 +41,11 @@ const makeNetworkRequest = async () => {
   })
     .then((response) => {
       apiResult.response = response.data;
+      apiResultTest.value = response.data.message;
     })
     .catch((error) => {
-      apiResult.error = error;
+      apiResult.error = error.message;
+      apiResultTest.value = error.response.data.message;
     });
 };
 </script>

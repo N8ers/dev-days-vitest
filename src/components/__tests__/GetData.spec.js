@@ -1,6 +1,7 @@
 import { flushPromises, mount } from "@vue/test-utils";
 import { describe, expect, test, beforeAll, afterEach, afterAll } from "vitest";
 import { rest } from "msw";
+import { nextTick } from "vue";
 import { setupServer } from "msw/node";
 
 import GetData from "@/components/GetData.vue";
@@ -20,7 +21,7 @@ const server = setupServer(...restHandlers);
 
 // Start server before all tests
 beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
-//  Close server after all tests
+// Close server after all tests
 afterAll(() => server.close());
 // Reset handlers after each test `important for test isolation`
 afterEach(() => server.resetHandlers());
@@ -34,23 +35,20 @@ describe("GetData.vue", () => {
     // );
 
     await flushPromises();
-    await flushPromises();
-    await flushPromises();
 
     const wrapper = mount(GetData);
     const button = wrapper.find("button");
     await button.trigger("click");
 
     await flushPromises();
-    await flushPromises();
-    await flushPromises();
+
     const networkResponseArea = wrapper.find(
       '[data-test="networkResponseArea"]'
     );
 
     await flushPromises();
     await flushPromises();
-    await flushPromises();
+    await nextTick();
 
     expect(networkResponseArea.text()).toBe("Response: hi");
   });
@@ -58,19 +56,16 @@ describe("GetData.vue", () => {
   test("Error renders when network request fails", async () => {
     server.use(
       rest.get("http://localhost:5050", (req, res, ctx) => {
-        return res(ctx.status(500));
+        return res(ctx.status(500), ctx.json({ message: "An error occured" }));
       })
     );
 
-    await flushPromises();
-    await flushPromises();
     await flushPromises();
 
     const wrapper = mount(GetData);
     const button = wrapper.find("button");
     await button.trigger("click");
-    await flushPromises();
-    await flushPromises();
+
     await flushPromises();
 
     const networkResponseArea = wrapper.find(
@@ -79,10 +74,8 @@ describe("GetData.vue", () => {
 
     await flushPromises();
     await flushPromises();
-    await flushPromises();
+    await nextTick();
 
-    expect(networkResponseArea.text()).toBe(
-      "ERROR: AxiosError: Request failed with status code 500"
-    );
+    expect(networkResponseArea.text()).toBe("Response: An error occured");
   });
 });
