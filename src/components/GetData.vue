@@ -35,18 +35,31 @@ const makeNetworkRequest = async () => {
 
   const expressUrl = "http://localhost:5050";
 
-  await axios({
-    method: "get",
-    url: expressUrl,
-  })
-    .then((response) => {
-      apiResult.response = response.data;
-      apiResultTest.value = response.data.message;
-    })
-    .catch((error) => {
-      apiResult.error = error.message;
-      apiResultTest.value = error.response.data.message;
-    });
+  try {
+    const response = await axios.get(expressUrl);
+    console.log(response.data);
+    apiResult.response = response.data;
+    console.log(apiResult);
+  } catch (error) {
+    apiResult.error = error.message;
+  }
+
+  // await axios({
+  //   method: "get",
+  //   url: expressUrl,
+  // })
+  //   .then((response) => {
+  //     console.log("response:: ", response);
+  //     apiResult.response = response.data;
+  //     apiResultTest.value = response.data.message;
+  //   })
+  //   .catch((error) => {
+  //     if (!error) {
+  //       error.message = "ERROR WITH ERROR";
+  //     }
+  //     apiResult.error = error.message;
+  //     // apiResultTest.value = error.response.data.message;
+  //   });
 };
 </script>
 
