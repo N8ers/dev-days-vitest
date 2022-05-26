@@ -10,36 +10,46 @@ import GetData from "@/components/GetData.vue";
 // It probably has to do with the beforeAll/afterEach/afterAll. //
 //////////////////////////////////////////////////////////////////
 
-const server = setupServer(
+export const restHandlers = [
   rest.get("http://localhost:5050", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.body({ message: "hi" }));
-  })
-);
+    return res(ctx.status(200), ctx.json({ message: "hi" }));
+  }),
+];
 
-beforeAll(() => {
-  return server.listen();
-});
-afterEach(() => {
-  return server.resetHandlers();
-});
-afterAll(() => {
-  return server.close();
-});
+const server = setupServer(...restHandlers);
+
+// Start server before all tests
+beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
+//  Close server after all tests
+afterAll(() => server.close());
+// Reset handlers after each test `important for test isolation`
+afterEach(() => server.resetHandlers());
 
 describe("GetData.vue", () => {
   test("Message renders when network request is successful", async () => {
-    server.use(
-      rest.get("http://localhost:5050", (req, res, ctx) => {
-        return res(ctx.status(200), ctx.body({ message: "hi" }));
-      })
-    );
+    // server.use(
+    //   rest.get("http://localhost:5050", (req, res, ctx) => {
+    //     return res(ctx.status(200), ctx.body({ message: "hi" }));
+    //   })
+    // );
+
+    await flushPromises();
+    await flushPromises();
+    await flushPromises();
 
     const wrapper = mount(GetData);
-    await wrapper.find("button").trigger("click");
+    const button = wrapper.find("button");
+    await button.trigger("click");
+
+    await flushPromises();
+    await flushPromises();
     await flushPromises();
     const networkResponseArea = wrapper.find(
       '[data-test="networkResponseArea"]'
     );
+
+    await flushPromises();
+    await flushPromises();
     await flushPromises();
 
     expect(networkResponseArea.text()).toBe("Response: hi");
@@ -52,12 +62,23 @@ describe("GetData.vue", () => {
       })
     );
 
-    const wrapper = mount(GetData);
-    await wrapper.find("button").trigger("click");
     await flushPromises();
+    await flushPromises();
+    await flushPromises();
+
+    const wrapper = mount(GetData);
+    const button = wrapper.find("button");
+    await button.trigger("click");
+    await flushPromises();
+    await flushPromises();
+    await flushPromises();
+
     const networkResponseArea = wrapper.find(
       '[data-test="networkResponseArea"]'
     );
+
+    await flushPromises();
+    await flushPromises();
     await flushPromises();
 
     expect(networkResponseArea.text()).toBe(
